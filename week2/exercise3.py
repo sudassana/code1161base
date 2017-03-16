@@ -24,13 +24,13 @@ def fix_it(moves=True, should_move=True):
     "No Problem"
     """
     if moves == should_move:
-        return "No problem"
+        return "No Problem"
     elif moves and not should_move:
         return "Duct Tape"
-    elif not moves and not should_move:
-        return "No Problem"
     elif not moves and should_move:
         return "WD-40"
+    else:
+        return "Something's not right"
 
 
 def loops_1a():
@@ -60,6 +60,9 @@ def star_map():
             return "*"
         else:
             return "!"
+
+    result = map(star_or_bang, range(10))
+    return result
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -147,7 +150,7 @@ def loops_4():
     number_square = []
     for i in range(10):
         number_square.append(range(10))
-
+    print(number_square)
     return number_square
 
 
@@ -180,6 +183,7 @@ def loops_5():
             coordinates_row.append('(i{}, j{})'.format(i, j))
         number_square.append(coordinates_row)
     print(number_square)
+    return number_square
 
 
 def loops_6():
@@ -206,7 +210,7 @@ def loops_6():
 
     for i in range(10):
         row = []
-        for j in range(i+1):
+        for j in range(i + 1):
             row.append(j)
         the_wedge.append(row)
     return the_wedge
