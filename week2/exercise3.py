@@ -30,7 +30,7 @@ def fix_it(moves=True, should_move=True):
     elif not moves and should_move:
         return "WD-40"
     else:
-        return "Something's not right"
+        return "Hmm Weird"
 
 
 def loops_1a():
@@ -73,7 +73,10 @@ def loops_1c(number_of_items=5, symbol="#"):
     a string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-    pass
+    sharpies = []
+    for i in range(number_of_items):
+        sharpies.append(symbol)
+    return sharpies
 
 
 def loops_2():
@@ -149,8 +152,11 @@ def loops_4():
     """
     number_square = []
     for i in range(10):
-        number_square.append(range(10))
-    print(number_square)
+        number_row = []
+        for j in range(10):
+            number_row.append(str(j))
+        number_square.append(number_row)
+
     return number_square
 
 
@@ -207,12 +213,12 @@ def loops_6():
     TIP: look out for the starting condition.
     """
     the_wedge = []
-
     for i in range(10):
-        row = []
+        row_number = []
         for j in range(i + 1):
-            row.append(j)
-        the_wedge.append(row)
+            row_number.append(str(j))
+        the_wedge.append(row_number)
+
     return the_wedge
 
 
