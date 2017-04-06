@@ -28,15 +28,20 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
-    print("\nWelcome to the more advanced Guessing Game!")
-    print("A number between 10 and 20 ")
+    print("\nwelcome to the guessing game!")
     lowerBound = raw_input("Enter a lower bound: ")
-    print("OK then, a number between 10 and {} ?").format(lowerBound)
+    upperBound = raw_input("Ok, now enter an upper bound: ")
+    print("OK, a number between {} and {} ?".format(lowerBound, upperBound))
     lowerBound = int(lowerBound)
-
-    actualNumber = random.randint(0, lowerBound)
+    upperBound = int(upperBound)
+    actualNumber = random.randint(lowerBound, upperBound)
 
     guessed = False
+
+    if actualNumber != lowerBound:
+        print(not_number_rejector)
+    else:
+        print("Stupid cunt")
 
     while not guessed:
         guessedNumber = int(raw_input("guess a number: "))
@@ -44,10 +49,12 @@ def advancedGuessingGame():
         if guessedNumber == actualNumber:
             print("you got it!! It was {}".format(actualNumber))
             guessed = True
+        elif guessedNumber > lowerBound:
+            print("I WILL BANISH YOU FROM THIS WORLD!")
         elif guessedNumber < actualNumber:
             print("too small, try again ")
         else:
-            print("too big, try again   ")
+            print("too big, try again")
     return "You got it!"
 
 
