@@ -34,10 +34,11 @@ def binary_search(low, high, actual_number):
             high = guess
             guess = int(math.ceil((low + guess) / 2))
         else:
-            low = guess = int(math.ceil((low + guess) / 2))
-            tries = (tries + 1)
-            print ("guess {}, actnum {}".format(guess, actual_number))
-            return {"guess": guess, "tries": tries}
+            low = guess
+            guess = int(math.ceil((low + guess) / 2))
+        tries = (tries + 1)
+        print ("guess {}, actnum {}".format(guess, actual_number))
+        return {"guess": guess, "tries": tries}
 
 
 if __name__ == "__main__":
