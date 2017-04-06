@@ -41,7 +41,7 @@ def advancedGuessingGame():
     if actualNumber != lowerBound:
         print(not_number_rejector)
     else:
-        print("Stupid cunt")
+        print("Really?")
 
     while not guessed:
         guessedNumber = int(raw_input("guess a number: "))
@@ -49,7 +49,7 @@ def advancedGuessingGame():
         if guessedNumber == actualNumber:
             print("you got it!! It was {}".format(actualNumber))
             guessed = True
-        elif guessedNumber > lowerBound:
+        elif guessedNumber < lowerBound or guessedNumber > upperBound:
             print("I WILL BANISH YOU FROM THIS WORLD!")
         elif guessedNumber < actualNumber:
             print("too small, try again ")
