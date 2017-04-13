@@ -58,9 +58,9 @@ def get_some_details():
 
     data = json.loads(json_data)
     return {"lastName":       data["results"][0]["name"]["last"],
-            "password":       data['results'][0]["login"]["password"],
-            "postcodePlusID": data['results'][0]["location"]["postcode"]
-            + data['results'][0]["id"]["value"]
+            "password":       data["results"][0]["login"]["password"],
+            "postcodePlusID": data["results"][0]["location"]["postcode"]
+            + data["results"][0]["id"]["value"]
             }
 
 
@@ -96,8 +96,9 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. ?len=
     """
-    url = "http://randomword.setgetgo.com/get.php"
-    
+    url = "http://randomword.setgetgo.com/get.php?len=20"
+    r = requests.get(url)
+    print(r)
 
 
 def wunderground():
@@ -112,7 +113,7 @@ def wunderground():
          variable and then future access will be easier.
     """
     base = "http://api.wunderground.com/api/"
-    api_key = "YOUR KEY - REGISTER TO GET ONE"
+    api_key = "c8c02ae0ac2f7628"
     country = "AU"
     city = "Sydney"
     template = "{base}/{key}/conditions/q/{country}/{city}.json"
@@ -121,10 +122,13 @@ def wunderground():
     the_json = json.loads(r.text)
     obs = the_json['current_observation']
 
-    return {"state":           None,
-            "latitude":        None,
-            "longitude":       None,
-            "local_tz_offset": None}
+    return {"state":           obs["current_observation"]
+                                  ["observation_location"]["state"],
+            "latitude":        obs["current_observation"]
+                                  ["observation_location"]["latitude"],
+            "longitude":       obs["current_observation"]
+                                  ["observation_location"]["longitude"],
+            "local_tz_offset": obs["current_observation"]["local_tz_offset"]}
 
 
 def diarist():
@@ -140,7 +144,13 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
+    file_path = "week4/laser.pew"
+
+    mode = "w"
+    diarist = open(file_path, mode)
+    answer = 11
+    diarist.write(answer)
+    diarist.close()
 
 
 if __name__ == "__main__":

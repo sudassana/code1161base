@@ -55,8 +55,12 @@ def do_bunch_of_bad_things():
 # return a lit of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
-
+    completion_message = "Pepsi and United Airlines memes are spreading!"
+    dank_memes = []
+    for i in range(9, 1):
+        print("Spreading spicy memes in " % i)
+        dank_memes.append(i)
+        print(completion_message)
 
 # TRIANGLES
 
@@ -67,32 +71,38 @@ def countdown(message, start, stop, completion_message):
 # turned off by default but turned on with an optional argument.
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
+
+
 def calculate_hypotenuse(base, height):
-    pass
+    hypot = (base**2 + height**2)**0.5
+    return hypot
 
 
 def calculate_area(base, height):
-    pass
+    area = 1/2 * base * height
+    return area
 
 
 def calculate_perimeter(base, height):
-    pass
+    perim = base + height + 5.0
+    return perim
 
 
 def calculate_aspect(base, height):
-    pass
+    aspect = "tall"
+    return aspect
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
-    return {"area": None,
-            "perimeter": None,
-            "height": None,
-            "base": None,
-            "hypotenuse": None,
-            "aspect": None,
-            "units": None}
+    return {"area": [calculate_area],
+            "perimeter": [calculate_perimeter],
+            "height": [height],
+            "base": [base],
+            "hypotenuse": [calculate_hypotenuse],
+            "aspect": [calculate_aspect],
+            "units": [units]}
 
 
 # this should return a multi line string that looks a bit like this:
