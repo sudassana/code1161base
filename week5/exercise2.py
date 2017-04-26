@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 """Recursion.
+
 Exercises and examples to illustrate recursion.
 """
 from __future__ import division
@@ -9,6 +10,7 @@ import turtle
 
 def italian_dinner(axiom="tomatoes", guard=6):
     u"""Make recursive dinner plans.
+
     This is an example to help you get your head around the idea of recursion.
     # The Italian dinner
     In Douglas Hofstader's _Metamagical Themas_ (a compendium of essays he
@@ -68,6 +70,7 @@ def italian_rules(word):
 
 def abba(source="abba", guard=3):
     """Recursively replace letters acording to the rules.
+
     This function takes a seed string, e.g. "abba" and replaces each letter in
     turn acording to the rules. These rules can be of arbitrary complexity.
     Modify the rules to map from:
@@ -80,6 +83,7 @@ def abba(source="abba", guard=3):
     """
     def apply_rules(letter):
         """Control the substitution.
+
         You need to change these substitutions to make it work.
         """
         if letter == "a":
@@ -113,6 +117,7 @@ def koch(t, order, size):
 
 def draw_koch(drawing_method, steps_deep=4):
     """Open a tk window and show the turtle drawing the koch curve.
+
     Docs for python turtles here.
     https://docs.python.org/2/library/turtle.html
     """
@@ -127,6 +132,7 @@ def draw_koch(drawing_method, steps_deep=4):
 
 def square_koch(t, order, size):
     r"""Draw a koch curve with a square rather than a triangular point.
+
            _
     e.g. _| |_ rather than _/\_
     Leave the turtle facing the same direction.

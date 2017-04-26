@@ -57,12 +57,17 @@ def do_bunch_of_bad_things():
 # return a lit of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    """Do a countdown for memes and stuff, cuz why not."""
-    message = "Spreading spicy memes in %d"
-    completion_message = "Pepsi & United Airlines memes are so HOT right now!"
-    for i in range(start, stop, -1):
-        print(message % (i))
-    print(completion_message)
+    """Create a list of countdowns with completion message."""
+    if start > stop:
+        step = -1
+    else:
+        step = 1
+
+    countdown1 = []
+    for i in range(start, stop, step):
+        countdown1.append(message + str(i))
+    countdown1.append(completion_message)
+    return countdown1
 # TRIANGLES
 
 # This should be a series of functions that are ultimatly used by
@@ -76,38 +81,43 @@ def countdown(message, start, stop, completion_message):
 
 def calculate_hypotenuse(base, height):
     """Calculate the hypotenuse for a triangle."""
-    hypot = (base**2 + height**2)**0.5
-    return hypot
+    calculate_hypotenuse = (base**2 + height**2)**0.5
+    return calculate_hypotenuse
 
 
 def calculate_area(base, height):
     """Calculate the area for a triangle."""
-    area = 1/2 * base * height
-    return area
+    calculate_area = 1/2 * base * height
+    return calculate_area
 
 
 def calculate_perimeter(base, height):
     """Calculate the perimeter for a triangle."""
-    perim = base + height + 5.0
-    return perim
+    calculate_perimeter = base + height + calculate_hypotenuse(base, height)
+    return calculate_perimeter
 
 
 def calculate_aspect(base, height):
     """Give the aspect of the specific triangle."""
-    aspect = "tall"
-    return aspect
+    if base > height:
+        calculate_aspect = "wide"
+    elif base < height:
+        calculate_aspect = "tall"
+    else:
+        calculate_aspect = "equal"
+    return calculate_aspect
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     """Give the facts about this triangle."""
-    return {"area": calculate_area,
-            "perimeter": calculate_perimeter,
+    return {"area": calculate_area(base, height),
+            "perimeter": calculate_perimeter(base, height),
             "height": height,
             "base": base,
-            "hypotenuse": calculate_hypotenuse,
-            "aspect": calculate_aspect,
+            "hypotenuse": calculate_hypotenuse(base, height),
+            "aspect": calculate_aspect(base, height),
             "units": units}
 
 
@@ -138,6 +148,8 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                   |   \\
                   ------
                   {base}"""
+    return tall
+
     wide = """
             {hypotenuse}
              ↓         ∕ |
@@ -145,6 +157,8 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                ∕         |
             ∕------------|
               {base}"""
+    return None
+
     equal = """
             {height}
             |
@@ -152,21 +166,22 @@ def tell_me_about_this_right_triangle(facts_dictionary):
             |____>|  ⋱ <-{hypotenuse}
                   |____⋱
                   {base}"""
-
+    return None
     pattern = ("This triangle is {area}{units}²\n"
                "It has a perimeter of {perimeter}{units}\n"
                "This is a {aspect} triangle.\n")
 
     facts = pattern.format(**facts_dictionary)
+    return facts
 
 
 def triangle_master(base,
                     height,
                     return_diagram=False,
                     return_dictionary=False):
-    """A master function to do this triangle stuff."""
+    """A master function to do this triangle facts."""
     if return_diagram and return_dictionary:
-        return
+        return None
     elif return_diagram:
         return None
     elif return_dictionary:
@@ -195,11 +210,19 @@ def wordy_pyramid():
 
 def get_a_word_of_length_n(length):
     """Get a word from api with specific length."""
-    pass
+    import requests
+    baseurl = "http://www.setgetgo.com/randomword/get.php?len="
+    wordlen = [5, 8, 4, 0, 0]
+    for i in wordlen:
+        url = baseurl + str(i)
+        r = requests.get(url)
+        message = r.text
+
+    return message
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    """Make list of words with the same thing."""
+    """Make list of words with the same length."""
     pass
 
 
