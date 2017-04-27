@@ -157,7 +157,7 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                ∕         |
             ∕------------|
               {base}"""
-    return None
+    return wide
 
     equal = """
             {height}
@@ -166,7 +166,7 @@ def tell_me_about_this_right_triangle(facts_dictionary):
             |____>|  ⋱ <-{hypotenuse}
                   |____⋱
                   {base}"""
-    return None
+    return equal
     pattern = ("This triangle is {area}{units}²\n"
                "It has a perimeter of {perimeter}{units}\n"
                "This is a {aspect} triangle.\n")
@@ -183,9 +183,9 @@ def triangle_master(base,
     if return_diagram and return_dictionary:
         return None
     elif return_diagram:
-        return None
+        return return_diagram
     elif return_dictionary:
-        return None
+        return return_dictionary
     else:
         print("You're an odd one, you don't want anything!")
 
@@ -212,18 +212,25 @@ def get_a_word_of_length_n(length):
     """Get a word from api with specific length."""
     import requests
     baseurl = "http://www.setgetgo.com/randomword/get.php?len="
-    wordlen = [5, 8, 4, 0, 0]
-    for i in wordlen:
+    length = [5, 8, 4, 0, "a"]
+    for i in length:
         url = baseurl + str(i)
         r = requests.get(url)
         message = r.text
-
-    return message
+        return message
 
 
 def list_of_words_with_lengths(list_of_lengths):
     """Make list of words with the same length."""
-    pass
+    import requests
+    baseurl = "http://www.setgetgo.com/randomword/get.php?len="
+    wordlist = []
+    for i in range(4, 5, 6):
+        url = baseurl + str(i)
+        r = requests.get(url)
+        message = r.text
+        wordlist.append(message)
+        return wordlist
 
 
 if __name__ == "__main__":
