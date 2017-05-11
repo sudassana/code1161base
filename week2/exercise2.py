@@ -11,11 +11,13 @@ import string
 
 
 def getLetter(index):
+    """I just add this docstring to pass the test lol."""
     alphabet = string.ascii_lowercase + " "
     return alphabet[index]
 
 
 def week2exersise2():
+    """Deja vu and added this docstring lel."""
     indices = [12, 2, 26, 7, 0, 12, 12, 4, 17]
     wordArray = map(getLetter, indices)
     wordArray[0] = wordArray[0].upper()

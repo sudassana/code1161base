@@ -149,7 +149,6 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                   ------
                   {base}"""
     return tall
-
     wide = """
             {hypotenuse}
              ↓         ∕ |
@@ -158,7 +157,6 @@ def tell_me_about_this_right_triangle(facts_dictionary):
             ∕------------|
               {base}"""
     return wide
-
     equal = """
             {height}
             |
@@ -174,18 +172,30 @@ def tell_me_about_this_right_triangle(facts_dictionary):
     facts = pattern.format(**facts_dictionary)
     return facts
 
+    if height > base:
+        ret = tall.format(**facts_dictionary)
+    elif height == base:
+        ret = equal.format(**facts_dictionary)
+    else:
+        ret = wide.format(**facts_dictionary)
+
+        ret = ret + "\n" + facts_dictionary
+        return ret
+
 
 def triangle_master(base,
                     height,
                     return_diagram=False,
                     return_dictionary=False):
     """A master function to do this triangle facts."""
+    dictionary = get_triangle_facts(base, height)
+    diagram = tell_me_about_this_right_triangle(dictionary)
     if return_diagram and return_dictionary:
-        return None
+        return {'diagram': diagram, 'facts': dictionary}
     elif return_diagram:
         return return_diagram
     elif return_dictionary:
-        return return_dictionary
+        return {'facts': dictionary}
     else:
         print("You're an odd one, you don't want anything!")
 

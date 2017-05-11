@@ -34,8 +34,7 @@ def shout(a_string):
     or in any of the million places that google will give you.
     "python make a string uppercase" is a good starting search query.
     """
-    a_string = "HELLO"
-    return a_string
+    return a_string.upper()
 
 
 def really_shout(a_string):
@@ -46,7 +45,7 @@ def really_shout(a_string):
     Look up how to 'concatinate' strings to make this happen.
     """
     really_shout = "!"
-    return a_string + really_shout
+    return a_string.upper() + really_shout
 
 
 def minitest(f, args, expected):
