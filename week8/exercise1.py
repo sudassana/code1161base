@@ -51,12 +51,16 @@ def fizz_buzz():
     fizzBuzzList = []
     for i in range(1, 101):
         fizzBuzzList.append(i)
+        three = []
+        for j in range(3, 101, 3):
+            three.append("Fizz")
+        return three
+        five = []
+        for k in range(5, 101, 5):
+            five.append("Buzz")
+        three.append(five)
+        fizzBuzzList.append(three)
     return fizzBuzzList
-
-    three = []
-    for j in range(3, 101, 4):
-        three.append("Fizz")
-    return three
 
 
 def put_behind_bars(input_string="very naughty boy"):
