@@ -87,15 +87,23 @@ def abba(source="abba", guard=3):
         You need to change these substitutions to make it work.
         """
         if letter == "a":
-            return "a"
+            return "bba"
         elif letter == "b":
-            return "b"
+            return "aob"
         elif letter == "o":
-            return "o"
+            return "oa"
         else:
             return letter
 
-    # write the rest of the function here
+    parts = list(source)
+    result = map(apply_rules, parts)
+    abba_string = "".join(result)
+    print(abba_string)
+    guard -= 1
+    if guard > 0:
+        return abba(abba_string, guard)
+    else:
+        return abba_string
 
 
 def koch(t, order, size):
@@ -126,6 +134,7 @@ def draw_koch(drawing_method, steps_deep=4):
     raphael.goto(-300, 0)
     raphael.pendown()
     trace = drawing_method(raphael, order=steps_deep, size=600)
+    # raphael.penup()
     return trace
 
 
@@ -137,9 +146,13 @@ def square_koch(t, order, size):
     Leave the turtle facing the same direction.
     """
     trace = ""
-    # write the rest of the function here.
+    if order == 0:
+        t.forward(size)
+    else:
+        for angle in [90, -90, -90, 90, 0]:
+            trace += square_koch(t, order-1, size/3)
+            t.left(angle)
     return str(order) + trace
-    pass
 
 
 def draw_square(steps=4):

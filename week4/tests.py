@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 """Week 4 tests.
-
 This file tests your code. It'll check that the work in each
 of the exercise files does what it's supposed to.
 """
@@ -60,7 +59,6 @@ def treat():
             if ('url = https://github.com/' in line) \
                and not ('notionparallax' in line):
                 # ensure it's not Ben's repo
-                print(line)
                 name = line.split('/')[-2]
                 if 'git' in name:
                     # if ssh url
@@ -68,13 +66,12 @@ def treat():
             elif 'url = https://github.com/notionparallax' in line:
                 print("we must be testing the tests")
                 name = "notionparallax"
-    try:
+    if not name:
+        print("Error with getting github username")
+    else:
         url = ("https://raw.githubusercontent.com/"
                "notionparallax/code1161base/master/faces/")
-        full_url = url + name
-        print("treat:\n", full_url, requests.get(full_url).text)
-    except Exception as e:
-        print("Error with getting github username", e)
+        print("treat:\n", requests.get(url + name).text)
 
 
 def theTests(path_to_code_to_check="."):

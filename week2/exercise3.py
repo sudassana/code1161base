@@ -243,7 +243,19 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    pass
+    star_pyramid = []
+    for i in range(5):
+        row = list("*"*9)
+        left_bound = int((9-1)/2 - i)
+        right_bound = int((9+1)/2 + i)
+        for j in range(0, left_bound):
+            row[j] = " "
+        for j in range(right_bound, 9):
+            row[j] = " "
+        star_pyramid.append(row)
+
+    print(star_pyramid)
+    return star_pyramid
 
 
 def lp(some_kind_of_list, exercise_name):

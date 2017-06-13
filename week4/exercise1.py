@@ -15,7 +15,7 @@ if LOCAL != CWD:
     print("CWD", CWD)
 
 
-def success_is_relative(file_path):
+def success_is_relative():
     """Read from a file.
 
     Read the success message from week 1, but from here, using a relative path.
@@ -28,14 +28,11 @@ def success_is_relative(file_path):
     # this depends on excecution context. Take a look at your CWD and remember
     # that it changes.
     # print(path, CWD)
-    mode = "r"
-    week1_file = open(file_path, mode)
-    response = week1_file.read()
-    print(response)
-    week1_file.close()
+    success_message = open("week1/pySuccessMessage.json", "r")
+    message = success_message.read().strip()
+    success_message.close()
 
-
-success_is_relative("week1/pySuccessMessage.json")
+    return message
 
 
 def get_some_details():
@@ -57,10 +54,14 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName":       data["results"][0]["name"]["last"],
-            "password":       data["results"][0]["login"]["password"],
-            "postcodePlusID": data["results"][0]["location"]["postcode"]
-            + data["results"][0]["id"]["value"]
+    lastName = data["results"][0]["name"]["last"]
+    password = data["results"][0]["login"]["password"]
+    postcode = int(data["results"][0]["location"]["postcode"])
+    id_result = int(data["results"][0]["id"]["value"])
+    postcodePlusID = postcode + id_result
+    return {"lastName":       lastName,
+            "password":       password,
+            "postcodePlusID": postcodePlusID
             }
 
 
@@ -131,14 +132,14 @@ def wunderground():
     r = requests.get(url)
     the_json = json.loads(r.text)
     obs = the_json['current_observation']
-
-    return {"state":           obs["current_observation"]
-                                  ["observation_location"]["state"],
-            "latitude":        obs["current_observation"]
-                                  ["observation_location"]["latitude"],
-            "longitude":       obs["current_observation"]
-                                  ["observation_location"]["longitude"],
-            "local_tz_offset": obs["current_observation"]["local_tz_offset"]}
+    state = obs["display_location"]["state"]
+    latitude = obs["observation_location"]["latitude"]
+    longitude = obs["observation_location"]["longitude"]
+    local_tz_offset = obs["local_tz_offset"]
+    return {"state":           state,
+            "latitude":        latitude,
+            "longitude":       longitude,
+            "local_tz_offset": local_tz_offset}
 
 
 def diarist():
@@ -154,13 +155,14 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    file_path = "week4/laser.pew"
-
-    mode = "w"
-    diarist = open(file_path, mode)
-    answer = 11
-    diarist.write(answer)
-    diarist.close()
+    laser = open("Trispokedovetiles(laser).gcode", "r")
+    data_laser = laser.read()
+    times_laser = data_laser.count("M10 P1")
+    laser.close()
+    switch_laser = open("lasers.pew", "w")
+    switch_laser.write(str(times_laser))
+    switch_laser.close()
+    return times_laser
 
 
 if __name__ == "__main__":
